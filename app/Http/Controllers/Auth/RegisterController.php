@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        if (GameAccount::query()->where('email', $data['email'])->doesntExist()) {
+        if (GameAccount::query()->where('username', $data['name'])->doesntExist()) {
             GameAccount::query()->create([
                 'reg_mail' => $data['email'],
                 'email' => $data['email'],
