@@ -55,10 +55,11 @@ class RbacPermission extends Resource
 
             Text::make('Name')->rules('string', 'required'),
 
-            HasMany::make('Accounts', 'accountPermissions', GameAccountPermission::class),
+            BelongsToMany::make('Inherited by', 'linked', self::class),
 
             BelongsToMany::make('Inherits', 'links', self::class),
-            BelongsToMany::make('Inherited by', 'linked', self::class)
+
+            HasMany::make('Accounts', 'accountPermissions', GameAccountPermission::class),
         ];
     }
 

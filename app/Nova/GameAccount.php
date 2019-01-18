@@ -77,9 +77,7 @@ class GameAccount extends Resource
 
             Text::make('Email')
                 ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+                ->rules('required', 'email', 'max:254'),
 
             GamePassword::make('Password', 'sha_pass_hash')
                 ->onlyOnForms()
