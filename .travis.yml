@@ -1,22 +1,25 @@
 language: php
-
 php:
-  - 7.2
-
+- 7.2
 services:
-  - mysql
-
+- mysql
 cache:
   directories:
-    - node_modules
-    - vendor
-
+  - node_modules
+  - vendor
 before_script:
-  - cp .env.travis .env
-  - mysql -e 'create database homestead;'
-  - composer self-update
-  - composer install --no-interaction
-  - php artisan key:generate
-  - php artisan migrate
+- cp .env.travis .env
+- mysql -e 'create database homestead;'
+- composer self-update
+- composer install --no-interaction
+- php artisan key:generate
+- php artisan migrate
 script:
-  - vendor/bin/phpunit
+- vendor/bin/phpunit
+env:
+  global:
+  - secure: cOyd36x4ddzX8/i1CAr/Opf0By1p2fuI8Y664fUrxFXu2TkM3X/IuDXuqHP4NcDFcXaoc7HpZwbk2vHyMPsLfxmTvtdq84fIOmDAxpnMTlbQlVAwPABgl6aWrFrDnN4G8ruI+Fef9ZiXIlIHwhhly28pfCyZaA35fp3kY9hV4I9JcLnR7guSVos/s/50trvFpelXJoKspjSmlaKI8QjNbtQVoGkCG7ruOeTKe8LrFdLbG5HYfFJYpaIayWewhtU3iVwYZ7DUayCpb4siHgGyBtxEcTeHV0tfb3jUTmjcZ4B04gIeypZqkYF+ZtTq81zgwWdN30JB85bqOtTlVwsjfGnws/ZFZ2LMBOxCKjclmoKwV+do3CQZ0AS5rYk/9hyQnHS2pBR2o8RPTQQXvtsWld6iN3kc/i9Okg4ew9GImMuLb8IXbaSjxfrzfQBtyxJU2wT/BJPEypaihBH/J2UAO2ykAcWzhyA8WOVOVnMeveNhw/nUkLZZXUm2PO8oa43VxOlGishekczXyTgZZg0gET7LloNPaLSHRm+vG33fyDU/fu2VYkPBcpcm6X0PH8ls8a1DvctY2Bg9SUZepLmwBe3y62BGWsT+wBkIskg/W07nKRFcZUP0xvZ19afgdmKli6m/J/d5BybcWC9zbHFBnh4zKOpq3tRR8wuuoI7DRJg=
+  - secure: SAQ5SXMXftFpHDVj6nfVeiOHrFCr2dZcBlDtlxkWtNZTKm8yJYe6p+hUgDFqfLkIxdEpBeq2M3MFRZW9ubk7VHFAcMV/MjWIDuQeEaksqnbhTsT/yFOjLfXTN3gWnHg8xUf/utxdA/s38z2GTr1EPM/kah4BMGHC+1tBhhclKJAetaycfh5gxsbcEZfZTcEyeAOstoA3mN3Ouyig5gW7UF3jxDlTTNbRgWTKUCndrorvpyNj1/FjExN+ffYhujXIWt2bZXtIJBZKpVEwzilVK7tqaVvevOC29llf3xd2xRzPo4T3mnlwijLA3hPB1ghQOb8tRzSuwCUrQWeFq/Wq9DmwshrGfDTAJMY/6SbPpx9/GhVB4NbHzV9NQdDsqUlcw2AI1PTlMn4+JGfEn1EdTbpAfh0lO37+GkHPkt9XycF9l4bByL+qtTdwZiVMe6KGINFfdtkVKUOfnN31Exg9ci2ls1CtdmqfHz0swfH60mUZ930V18TGKeNOvsRxQpDOU7tlAErFMfbHyX08IKtg3CGyOxSE0jBbOhjnQgyYnT60g52gn2fOKKxyQtMjnwiLsYC7Spzyt7pAZS3Zhw34I+0h0dXgaFiMfyqzNp1YKHVGHzuvul+1m52LvR0F5gPHSxrrchFOQgU5bnE/1EIaLrDPknBGOPfux+n5suYdvnE=
+
+install:
+- echo "{\"http-basic\":{\"nova.laravel.com\":{\"username\":\"${NOVA_USERNAME}\",\"password\":\"${NOVA_PASSWORD}\"}}}" > auth.json
