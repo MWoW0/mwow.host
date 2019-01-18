@@ -3,14 +3,11 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class RbacPermission extends Resource
+class RbacLinkedPermission extends Resource
 {
     /**
      * The logical group associated with the resource.
@@ -24,14 +21,21 @@ class RbacPermission extends Resource
      *
      * @var string
      */
-    public static $model = 'App\RbacPermission';
+    public static $model = 'App\RbacLinkedPermission';
+
+    /**
+     * The relationships that should be eager loaded when performing an index query.
+     *
+     * @var array
+     */
+    public static $with = ['permission', 'linked'];
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -39,7 +43,7 @@ class RbacPermission extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name'
+        'id',
     ];
 
     /**
@@ -51,14 +55,15 @@ class RbacPermission extends Resource
     public function fields(Request $request)
     {
         return [
-            Number::make('ID', 'id')->sortable(),
+            BelongsTo::make('Permission', 'permission', RbacPermission::class)
+                ->rules('required', 'exists:auth.rbac_permissions,id')
+                ->searchable()
+                ->sortable(),
 
-            Text::make('Name')->rules('string', 'required'),
-
-            HasMany::make('Accounts', 'accountPermissions', GameAccountPermission::class),
-
-            BelongsToMany::make('Inherits', 'links', self::class),
-            BelongsToMany::make('Inherited by', 'linked', self::class)
+            BelongsTo::make('Linked', 'linked', RbacPermission::class)
+                ->rules('required', 'exists:auth.rbac_permissions,id')
+                ->searchable()
+                ->sortable()
         ];
     }
 

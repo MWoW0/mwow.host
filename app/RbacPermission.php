@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class RbacPermission extends Model
@@ -28,6 +29,13 @@ class RbacPermission extends Model
     protected $table = 'rbac_permissions';
 
     /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
      * The primary key for the model.
      *
      * @var string
@@ -48,5 +56,25 @@ class RbacPermission extends Model
     public function accountPermissions(): HasMany
     {
     	return $this->hasMany(GameAccountPermission::class, 'permissionId');
+    }
+
+    /**
+     * The permissions that inherits from this
+     * 
+     * @return BelongsToMany
+     */
+    public function links(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'rbac_linked_permissions', 'id', 'linkedId')->using(RbacLinkedPermission::class);
+    }
+
+    /**
+     * The permissions this inherits
+     * 
+     * @return BelongsToMany
+     */
+    public function linked(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'rbac_linked_permissions', 'linkedId', 'id')->using(RbacLinkedPermission::class);
     }
 }
