@@ -67,4 +67,14 @@ class RegistrationTest extends TestCase
 			'permissionId' => 195 // Sec Level: Player
 		], 'auth');
 	}
+
+	public function testNameCannotContainSpace()
+	{
+		$this->postJson('/register', [
+			'name' => 'john doe',
+			'email' => 'john@example.com',
+			'password' => 'secret',
+			'password_confirmation' => 'secret'
+		])->assertJsonValidationErrors('name');
+	}
 }
