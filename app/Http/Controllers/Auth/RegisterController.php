@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\GameAccount;
 use App\Hashing\Sha1Hasher;
 use App\Http\Controllers\Controller;
+use App\RbacPermission;
+use App\Realmlist;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -72,17 +74,25 @@ class RegisterController extends Controller
         ]);
 
         if (GameAccount::query()->where('username', $data['name'])->doesntExist()) {
-            GameAccount::query()->create([
+            $account = GameAccount::query()->create([
                 'reg_mail' => $data['email'],
                 'email' => $data['email'],
                 'username' => $data['name'],
                 'sha_pass_hash' => (new Sha1Hasher)->make($data['password'], ['username' => $data['name']]) 
             ]);
+
+            Realmlist::query()->each(function ($realm) use ($account) {
+                $account->permissions()->create([
+                    'realmId' => $realm->id,
+                    'permissionId' => 195 // Sec Level: Player
+                ]);
+            });
         } else {
             GameAccount::query()
-                ->where('email', $data['email'])
+                ->where('username', $data['name'])
                 ->update([
-                    'username' => $data['name'],
+                    'email' => $data['email'],
+                    'reg_mail' => $data['email'],
                     'sha_pass_hash' => (new Sha1Hasher)->make($data['password'], ['username' => $data['name']]) 
                 ]);
         }

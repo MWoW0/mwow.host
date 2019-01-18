@@ -59,4 +59,14 @@ class GameAccount extends Model
     {
         return $this->hasMany(GameAccountPermission::class, 'accountId');
     }
+
+    /**
+     * Characters pivot for this account
+     * 
+     * @return HasMany
+     */
+    public function characters(): HasMany
+    {
+        return $this->hasMany(RealmCharacter::class, 'acctid');
+    }
 }

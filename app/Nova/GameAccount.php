@@ -33,7 +33,7 @@ class GameAccount extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'username';
 
     /**
      * The columns that should be searched.
@@ -94,7 +94,9 @@ class GameAccount extends Resource
 
             Text::make('OS', 'os')->sortable()->onlyOnDetail(),
 
-            HasMany::make('Permissions', 'permissions', GameAccountPermission::class)
+            HasMany::make('Permissions', 'permissions', GameAccountPermission::class),
+
+            HasMany::make('Characters', 'characters', RealmCharacter::class)
         ];
     }
 

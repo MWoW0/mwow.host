@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Realmlist extends Model
 {
@@ -64,5 +65,15 @@ class Realmlist extends Model
     public function getExpansionAttribute()
     {
         return self::$expansions[$this->realmbuild] ?? 'unknown';
+    }
+
+    /**
+     * A sort of pivot for count of characters on a realm
+     * 
+     * @return HasMany
+     */
+    public function realmCharacters(): HasMany
+    {
+        return $this->hasMany(realmCharacter::class, 'realmid', 'id');
     }
 }

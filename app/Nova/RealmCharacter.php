@@ -2,16 +2,13 @@
 
 namespace App\Nova;
 
-use App\Realmlist as RealmlistModel;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Realmlist extends Resource
+class RealmCharacter extends Resource
 {
     /**
      * The logical group associated with the resource.
@@ -19,20 +16,20 @@ class Realmlist extends Resource
      * @var string
      */
     public static $group = 'Game';
-
+    
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Realmlist';
+    public static $model = 'App\RealmCharacter';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -40,7 +37,7 @@ class Realmlist extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'address'
+        'id',
     ];
 
     /**
@@ -52,19 +49,19 @@ class Realmlist extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            BelongsTo::make('Realm', 'realm', Realmlist::class)
+                ->rules('required', 'exists:auth.realmlist,id')
+                ->searchable()
+                ->sortable(),
 
-            Text::make('Name'),
+            BelongsTo::make('Account', 'account', GameAccount::class)
+                ->rules('required', 'exists:auth.account,id')
+                ->searchable()
+                ->sortable(),
 
-            Text::make('Address'),
-
-            Text::make('Local', 'localAddress'),
-
-            Number::make('Port'),
-
-            Select::make('Expansion', 'gamebuild')->options(RealmlistModel::$expansions),
-
-            HasMany::make('Characters', 'realmCharacters', RealmCharacter::class)
+            Number::make('Characters', 'numchars')
+                ->rules('required')
+                ->sortable()
         ];
     }
 

@@ -66,15 +66,23 @@ class GameAccountPermission extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            Boolean::make('Granted')
+                ->sortable(),
 
-            Boolean::make('Granted')->sortable(),
+            BelongsTo::make('Account', 'account', GameAccount::class)
+                ->rules('required', 'exists:auth.account,id')
+                ->sortable()
+                ->searchable(),
 
-            BelongsTo::make('Account', 'account', GameAccount::class)->rules('required', 'exists:auth.account,id'),
+            BelongsTo::make('Permission', 'permission', RbacPermission::class)
+                ->rules('required', 'exists:auth.rbac_permissions,id')
+                ->sortable()
+                ->searchable(),
 
-            BelongsTo::make('Permission', 'permission', RbacPermission::class)->rules('required', 'exist:auth.rbac_permissions,id'),
-
-            BelongsTo::make('Realm', 'realmlist', Realmlist::class)->rules('required', 'exists:auth.realmlist,id')
+            BelongsTo::make('Realm', 'realmlist', Realmlist::class)
+                ->rules('required', 'exists:auth.realmlist,id')
+                ->sortable()
+                ->searchable()
         ];
     }
 
