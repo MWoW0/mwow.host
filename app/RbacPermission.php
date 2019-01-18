@@ -47,6 +47,6 @@ class RbacPermission extends Model
      */
     public function accountPermissions(): HasMany
     {
-    	return $this->hasMany(GameAccountPermission::class, 'id', 'permissionId');
+    	return $this->hasMany(GameAccountPermission::class, 'permissionId');
     }
 }
