@@ -56,7 +56,7 @@ class ItemTemplate extends Resource
     {
         return [
             Number::make('Entry', 'entry')
-                ->rules('required', 'numeric', 'unique:world.item_template,entry,{{resourceId}}')
+                ->rules('required', 'numeric')
                 ->sortable(),
 
             Number::make('ILvl', 'ItemLevel')->withMeta(['value' => 200]),

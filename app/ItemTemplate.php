@@ -287,7 +287,7 @@ class ItemTemplate extends Model
      *
      * @var bool
      */
-    public $incrementing = false;
+    public $incrementing = true;
 
     /**
      * The primary key for the model.
