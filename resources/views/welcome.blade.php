@@ -1,70 +1,34 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('content')
+    <div class="container mx-auto min-h-screen">
+        <h1 class="text-grey-darker text-center font-thin tracking-wide text-5xl mb-6">
+            {{ __('Latest news') }}
+        </h1>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body class="bg-teal-lightest font-sans font-normal antialiased">
-    <div class="flex flex-col">
-        @if(Route::has('login'))
-            <div class="absolute pin-t pin-r mt-4 mr-4">
-                @auth
-                    <a href="{{ url('/home') }}" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase">{{ __('Home') }}</a>
-                    <a href="{{ url('/nova') }}" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase">{{ __('Admin') }}</a>
-                    <a href="{{ url('/horizon') }}" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase">{{ __('Queue') }}</a>
-
-                    <a href="{{ route('logout') }}"
-                        class="no-underline hover:underline text-teal-darker text-sm"
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                        {{ csrf_field() }}
-                    </form>
-                @else
-                    <a href="{{ route('login') }}" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase pr-6">{{ __('Login') }}</a>
-                    <a href="{{ route('register') }}" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase">{{ __('Register') }}</a>
-                @endauth
-            </div>
-        @endif
-
-        <div class="min-h-screen flex items-center justify-center">
-            <div class="flex flex-col justify-around h-full">
-                <div>
-                    <h1 class="text-grey-darker text-center font-thin tracking-wide text-5xl mb-6">
-                        {{ config('app.name', 'Laravel') }}
-                    </h1>
-                    <ul class="list-reset">
-                        <li class="inline pr-8">
-                            <a href="https://laravel.com/docs" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase" title="Documentation">Documentation</a>
-                        </li>
-                        <li class="inline pr-8">
-                            <a href="https://laracasts.com" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase" title="Laracasts">Laracasts</a>
-                        </li>
-                        <li class="inline pr-8">
-                            <a href="https://laravel-news.com" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase" title="News">News</a>
-                        </li>
-                        <li class="inline pr-8">
-                            <a href="https://nova.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase" title="Nova">Nova</a>
-                        </li>
-                        <li class="inline pr-8">
-                            <a href="https://forge.laravel.com" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase" title="Forge">Forge</a>
-                        </li>
-                        <li class="inline pr-8">
-                            <a href="https://github.com/laravel/laravel" class="no-underline hover:underline text-sm font-normal text-teal-darker uppercase" title="GitHub">GitHub</a>
-                        </li>
-                    </ul>
+        <ul class="list-reset">
+            @foreach($news as $article)
+                <div class="w-full lg:flex p-2">
+                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('{{ Storage::url($article->photo_url) }}')" title="News photo">
+                    </div>
+                    <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                        <div class="mb-8">
+                            <div class="text-black font-bold text-xl mb-2">{{ $article->title }}</div>
+                            <p class="text-grey-darker text-base">
+                                {!!  Parsedown::instance()->parse($article->body) !!}
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <img class="w-10 h-10 rounded-full mr-4" src="{{ $article->author->gravatar_url }}" alt="Gravatar of author.name">
+                            <div class="text-sm">
+                                <p class="text-black leading-none">{{ config('app.name') }} Staff</p>
+                                <p class="text-grey-dark">{{ $article->published_at->toDayDateTimeString() }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            @endforeach
+        </ul>
+        {{ $news->links('pagination.tailwind') }}
     </div>
-</body>
-</html>
+@endsection

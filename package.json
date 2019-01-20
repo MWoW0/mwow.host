@@ -26,5 +26,8 @@
         "sass-loader": "^7.1.0",
         "tailwindcss": "^0.7.3",
         "vue": "^2.5.17"
+    },
+    "dependencies": {
+        "tailwindcss-gradients": "^1.1.0"
     }
 }

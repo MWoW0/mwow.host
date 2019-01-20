@@ -958,6 +958,19 @@ module.exports = {
       // center: true,
       // padding: '1rem',
     }),
+
+    require('tailwindcss-gradients')({
+      variants: ['responsive'],
+      directions: {
+          't': 'to top',
+          'r': 'to right',
+          'b': 'to bottom',
+          'l': 'to left',
+      },
+      gradients: {
+          'shades-of-grey': [colors['grey'], colors['grey-lighter'], colors['grey-lightest']]
+      },
+    }),
   ],
 
 

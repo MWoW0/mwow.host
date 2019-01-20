@@ -6246,6 +6246,26 @@ table {
   z-index: auto;
 }
 
+.bg-gradient-t-shades-of-grey {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+  background-image: linear-gradient(to top, #b8c2cc, #f1f5f8, #f8fafc);
+}
+
+.bg-gradient-r-shades-of-grey {
+  background-image: -webkit-gradient(linear, left top, right top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+  background-image: linear-gradient(to right, #b8c2cc, #f1f5f8, #f8fafc);
+}
+
+.bg-gradient-b-shades-of-grey {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+  background-image: linear-gradient(to bottom, #b8c2cc, #f1f5f8, #f8fafc);
+}
+
+.bg-gradient-l-shades-of-grey {
+  background-image: -webkit-gradient(linear, right top, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+  background-image: linear-gradient(to left, #b8c2cc, #f1f5f8, #f8fafc);
+}
+
 /**
  * Here you would add any custom utilities you need that don't come out of the
  * box with Tailwind.
@@ -11913,6 +11933,26 @@ table {
   .sm\:z-auto {
     z-index: auto;
   }
+
+  .sm\:bg-gradient-t-shades-of-grey {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to top, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .sm\:bg-gradient-r-shades-of-grey {
+    background-image: -webkit-gradient(linear, left top, right top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to right, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .sm\:bg-gradient-b-shades-of-grey {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to bottom, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .sm\:bg-gradient-l-shades-of-grey {
+    background-image: -webkit-gradient(linear, right top, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to left, #b8c2cc, #f1f5f8, #f8fafc);
+  }
 }
 
 @media (min-width: 768px) {
@@ -17566,6 +17606,26 @@ table {
 
   .md\:z-auto {
     z-index: auto;
+  }
+
+  .md\:bg-gradient-t-shades-of-grey {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to top, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .md\:bg-gradient-r-shades-of-grey {
+    background-image: -webkit-gradient(linear, left top, right top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to right, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .md\:bg-gradient-b-shades-of-grey {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to bottom, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .md\:bg-gradient-l-shades-of-grey {
+    background-image: -webkit-gradient(linear, right top, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to left, #b8c2cc, #f1f5f8, #f8fafc);
   }
 }
 
@@ -23221,6 +23281,26 @@ table {
   .lg\:z-auto {
     z-index: auto;
   }
+
+  .lg\:bg-gradient-t-shades-of-grey {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to top, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .lg\:bg-gradient-r-shades-of-grey {
+    background-image: -webkit-gradient(linear, left top, right top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to right, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .lg\:bg-gradient-b-shades-of-grey {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to bottom, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .lg\:bg-gradient-l-shades-of-grey {
+    background-image: -webkit-gradient(linear, right top, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to left, #b8c2cc, #f1f5f8, #f8fafc);
+  }
 }
 
 @media (min-width: 1200px) {
@@ -28874,5 +28954,25 @@ table {
 
   .xl\:z-auto {
     z-index: auto;
+  }
+
+  .xl\:bg-gradient-t-shades-of-grey {
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to top, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .xl\:bg-gradient-r-shades-of-grey {
+    background-image: -webkit-gradient(linear, left top, right top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to right, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .xl\:bg-gradient-b-shades-of-grey {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to bottom, #b8c2cc, #f1f5f8, #f8fafc);
+  }
+
+  .xl\:bg-gradient-l-shades-of-grey {
+    background-image: -webkit-gradient(linear, right top, left top, from(#b8c2cc), color-stop(#f1f5f8), to(#f8fafc));
+    background-image: linear-gradient(to left, #b8c2cc, #f1f5f8, #f8fafc);
   }
 }

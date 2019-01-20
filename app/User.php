@@ -32,4 +32,9 @@ class User extends Authenticatable implements AuditableContract
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getGravatarUrlAttribute(): string
+    {
+        return 'https://www.gravatar.com/avatar/'.md5(strtolower($this->email)).'?s=300';
+    }
 }
