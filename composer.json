@@ -22,7 +22,10 @@
         "owen-it/laravel-auditing": "^8.0",
         "predis/predis": "^1.1",
         "sasin91/game-password": "*",
-        "shipping-docker/vessel": "^4.0"
+        "shipping-docker/vessel": "^4.0",
+        "sasin91/item-display-id": "*",
+        "sasin91/item-quality": "*",
+        "sasin91/wow-currency": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -42,6 +45,18 @@
         {
             "type": "path",
             "url": "./nova-components/GamePassword"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/ItemDisplayId"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/ItemQuality"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/WowCurrency"
         }
     ],
     "config": {

@@ -11,7 +11,13 @@
         "build-TrinityCoreAccountPassword": "cd nova-components/TrinityCoreAccountPassword && npm run dev",
         "build-TrinityCoreAccountPassword-prod": "cd nova-components/TrinityCoreAccountPassword && npm run prod",
         "build-game-password": "cd nova-components/GamePassword && npm run dev",
-        "build-game-password-prod": "cd nova-components/GamePassword && npm run prod"
+        "build-game-password-prod": "cd nova-components/GamePassword && npm run prod",
+        "build-item-display-id": "cd nova-components/ItemDisplayId && npm run dev",
+        "build-item-display-id-prod": "cd nova-components/ItemDisplayId && npm run prod",
+        "build-item-quality": "cd nova-components/ItemQuality && npm run dev",
+        "build-item-quality-prod": "cd nova-components/ItemQuality && npm run prod",
+        "build-wow-currency": "cd nova-components/WowCurrency && npm run dev",
+        "build-wow-currency-prod": "cd nova-components/WowCurrency && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.18",

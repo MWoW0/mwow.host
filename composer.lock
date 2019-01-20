@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed111aec600985bcd3a2d4d73465b07a",
+    "content-hash": "77ab9df7bdfc99ca9d3e03433e8d616f",
     "packages": [
         {
             "name": "bensampo/laravel-enum",
@@ -3195,6 +3195,108 @@
             "autoload": {
                 "psr-4": {
                     "Sasin91\\GamePassword\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
+        },
+        {
+            "name": "sasin91/item-display-id",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/ItemDisplayId",
+                "reference": "dd4faf980e520ca761a7739fd789754f1b13828a",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sasin91\\ItemDisplayId\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sasin91\\ItemDisplayId\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
+        },
+        {
+            "name": "sasin91/item-quality",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/ItemQuality",
+                "reference": "fd8c10fdd324abb98f74c2460271ef8888459d61",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sasin91\\ItemQuality\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sasin91\\ItemQuality\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
+        },
+        {
+            "name": "sasin91/wow-currency",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/WowCurrency",
+                "reference": "13fcb856c998e2502b47145c8eda73ec3d562755",
+                "shasum": null
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sasin91\\WowCurrency\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sasin91\\WowCurrency\\": "src/"
                 }
             },
             "license": [
