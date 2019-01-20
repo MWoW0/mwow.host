@@ -46,6 +46,13 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+        'itemDisplay' => [
+            'driver' => 'sqlite',
+            'database' => database_path('itemdisplay.db'),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -70,6 +77,22 @@ return [
             'username' => env('DB_AUTH_USERNAME', env('DB_USERNAME')),
             'password' => env('DB_AUTH_PASSWORD', env('DB_PASSWORD')),
             'unix_socket' => env('DB_AUTH_SOCKET', env('DB_SOCKET')),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+        ],
+
+        'world' => [
+            'driver' => 'mysql',
+            'host' => env('DB_WORLD_HOST', env('DB_HOST')),
+            'port' => env('DB_WORLD_PORT', env('DB_PORT')),
+            'database' => env('DB_WORLD_DATABASE', 'tc_wotlk_world'),
+            'username' => env('DB_WORLD_USERNAME', env('DB_USERNAME')),
+            'password' => env('DB_WORLD_PASSWORD', env('DB_PASSWORD')),
+            'unix_socket' => env('DB_WORLD_SOCKET', env('DB_SOCKET')),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
