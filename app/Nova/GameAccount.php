@@ -19,7 +19,7 @@ class GameAccount extends Resource
      *
      * @var string
      */
-    public static $group = 'Game';
+    public static $group = 'Auth';
 
     /**
      * The model the resource corresponds to.

@@ -11,6 +11,13 @@ use Laravel\Nova\Fields\Password;
 class User extends Resource
 {
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Site';
+
+    /**
      * The model the resource corresponds to.
      *
      * @var string
