@@ -53,7 +53,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255', 'alpha_num'],
+            'username' => ['required', 'string', 'max:255', 'alpha_num'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -67,18 +67,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
-            'name' => $data['name'],
+        $user = User::query()->create([
+            'name' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        if (GameAccount::query()->where('username', $data['name'])->doesntExist()) {
+        if (GameAccount::query()->where('username', $data['username'])->doesntExist()) {
             $account = GameAccount::query()->create([
                 'reg_mail' => $data['email'],
                 'email' => $data['email'],
-                'username' => $data['name'],
-                'sha_pass_hash' => (new Sha1Hasher)->make($data['password'], ['username' => $data['name']]) 
+                'username' => $data['username'],
+                'sha_pass_hash' => (new Sha1Hasher)->make($data['password'], ['username' => $data['username']]) 
             ]);
 
             Realmlist::query()->each(function ($realm) use ($account) {
@@ -89,11 +89,11 @@ class RegisterController extends Controller
             });
         } else {
             GameAccount::query()
-                ->where('username', $data['name'])
+                ->where('username', $data['username'])
                 ->update([
                     'email' => $data['email'],
                     'reg_mail' => $data['email'],
-                    'sha_pass_hash' => (new Sha1Hasher)->make($data['password'], ['username' => $data['name']]) 
+                    'sha_pass_hash' => (new Sha1Hasher)->make($data['password'], ['username' => $data['username']]) 
                 ]);
         }
 

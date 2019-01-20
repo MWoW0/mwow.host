@@ -41,7 +41,7 @@ class RegistrationTest extends TestCase
 		$realm = factory(Realmlist::class)->create();
 
 		$this->postJson('/register', [
-			'name' => 'john',
+			'username' => 'john',
 			'email' => 'john@example.com',
 			'password' => 'secret',
 			'password_confirmation' => 'secret'
@@ -68,13 +68,13 @@ class RegistrationTest extends TestCase
 		], 'auth');
 	}
 
-	public function testNameCannotContainSpace()
+	public function testUserNameCannotContainSpace()
 	{
 		$this->postJson('/register', [
-			'name' => 'john doe',
+			'username' => 'john doe',
 			'email' => 'john@example.com',
 			'password' => 'secret',
 			'password_confirmation' => 'secret'
-		])->assertJsonValidationErrors('name');
+		])->assertJsonValidationErrors('username');
 	}
 }
