@@ -20,7 +20,7 @@ RUN echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu bionic main" > /etc/apt
     && apt-get install -y curl zip unzip git sqlite3 supervisor \
     && apt-get install -y nginx php7.3-fpm php7.3-cli \
        php7.3-sqlite3 php7.3-gd \
-       php7.3-curl \
+       php7.3-curl php7.3-bcmath \
        php7.3-mysql php7.3-mbstring \
        php7.3-xml php7.3-zip \
        php7.3-intl php7.3-readline \
