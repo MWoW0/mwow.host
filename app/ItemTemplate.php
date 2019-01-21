@@ -261,6 +261,57 @@ class ItemTemplate extends Model
         27 => 'Quiver',
         28 => 'Relic'
     ];
+    
+    public static $statTypes = [
+        0 => 'Mana',
+        1 => 'Health',
+        
+        3 => 'Agility',
+        4 => 'Strength',
+        5 => 'Intellect',
+        6 => 'Spirit',
+        7 => 'Stamina',
+        
+        12 => 'Defense',
+        13 => 'Dodge',
+        14 => 'Parry',
+        15 => 'Block',
+        16 => 'Melee hit',
+        17 => 'Ranged hit',
+        18 => 'Spell hit',
+        19 => 'Melee crit',
+        20 => 'Ranged crit',
+        21 => 'Spell crit',
+        22 => 'Melee hit taken',
+        23 => 'Ranged hit taken',
+        24 => 'Spell hit taken',
+        25 => 'Melee crit taken',
+        26 => 'Ranged crit taken',
+        27 => 'Spell crit taken',
+        28 => 'Melee haste',
+        29 => 'Ranged haste',
+        30 => 'Spell haste',
+        31 => 'Hit',
+        32 => 'Crit',
+        33 => 'Hit taken',
+        34 => 'Crit taken',
+        35 => 'Resiliance',
+        36 => 'Haste',
+        37 => 'Expertise',
+        38 => 'Melee Attack Power',
+        39 => 'Ranged Attack Power',
+
+        // 40 => 'Feral Attack Power',
+        // 41 => 'Healing',
+        // 42 => 'Spell Damage',
+
+        43 => 'Mana Regeneration',
+        44 => 'Armor Penetration',
+        45 => 'Spell Power',
+        46 => 'Health Regeneration',
+        47 => 'Spell Penetration',
+        48 => 'Block'
+    ];
 
     /**
      * The attributes that aren't mass assignable.

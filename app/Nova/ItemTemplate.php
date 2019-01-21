@@ -54,28 +54,35 @@ class ItemTemplate extends Resource
      */
     public function fields(Request $request)
     {
-        return [
+        $fields = [
             Number::make('Entry', 'entry')
                 ->rules('required', 'numeric')
-                ->sortable(),
+                ->sortable()
+                ->withMeta(['value' => $this->entry ?? \App\ItemTemplate::query()->max('entry')+1]),
 
-            Number::make('ILvl', 'ItemLevel')->withMeta(['value' => 200]),
+            Number::make('ILvl', 'ItemLevel')->withMeta(['value' => $this->ItemLevel ?? 200]),
 
-            Number::make('Required level', 'RequiredLevel')->rules('min:1', 'max:255')->withMeta(['value' => 90]),
+            Number::make('Required level', 'RequiredLevel')->rules('min:1', 'max:255')->withMeta(['value' => $this->RequiredLevel ?? 90]),
 
             Select::make('class')
                 ->creationRules('required')
-                ->options(\App\ItemTemplate::$itemClass),
+                ->options(\App\ItemTemplate::$itemClass)
+                ->displayUsing(function ($value) {
+                    return \App\ItemTemplate::$itemClass[$value] ?? $value;
+                }),
 
             Select::make('subclass')
                 ->creationRules('required')
-                ->options(\App\ItemTemplate::itemSubclassForSelect()),
+                ->options(\App\ItemTemplate::itemSubclassForSelect())
+                ->displayUsing(function ($value) {
+                    return \App\ItemTemplate::itemSubclassForSelect()[$value] ?? $value;
+                }),
 
             Text::make('Name')
                 ->creationRules('required')
                 ->rules('string', 'max:255', 'min:1'),
 
-            ItemDisplayId::make('displayid')
+            ItemDisplayId::make('Display ID', 'displayid')
                 ->rules('required', 'numeric')
                 ->hideFromIndex(),
 
@@ -94,12 +101,34 @@ class ItemTemplate extends Resource
             Select::make('Inventory type', 'InventoryType')
                 ->options(\App\ItemTemplate::$inventoryType)
                 ->rules('numeric')
+                ->displayUsing(function ($value) {
+                    return \App\ItemTemplate::$inventoryType[$value] ?? $value;
+                })
                 ->hideFromIndex(),
 
-            Text::make('Script', 'ScriptName')->help('References to a script in the core. eg. item_teleporter')->hideFromIndex()
-
-            // Insert remaining stat_type{1..10}, stat_value{1..10}
+            Text::make('Script', 'ScriptName')
+                ->rules('required', 'max:64')
+                ->withMeta(['value' => $this->ScriptName ?? '""'])
+                ->help('References to a script in the core. eg. item_teleporter')
+                ->hideFromIndex(),
         ];
+
+        for ($i = 1; $i < 11; $i++) {
+            $fields[] = Select::make("Stat Type {$i}", "stat_type{$i}")
+                ->options(\App\ItemTemplate::$statTypes)
+                ->withMeta(['value' => $this->{"stat_type{$i}"} ?? 0])
+                ->displayUsing(function ($value) {
+                    return \App\ItemTemplate::$statTypes[$value] ?? $value;
+                })
+                ->hideFromIndex();
+
+            $fields[] = Number::make("Stat value {$i}","stat_value{$i}")
+                ->rules('min:0', 'max:4294967295')
+                ->withMeta(['value' => $this->{"stat_value{$i}"} ?? 0])
+                ->hideFromIndex();
+        }
+
+        return $fields;
     }
 
     /**
