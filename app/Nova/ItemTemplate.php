@@ -83,20 +83,36 @@ class ItemTemplate extends Resource
                 ->rules('string', 'max:255', 'min:1'),
 
             ItemDisplayId::make('Display ID', 'displayid')
-                ->rules('required', 'numeric')
+                ->rules('required', 'min:-8388607', 'max:8388607')
+                ->withMeta(['value' => $this->displayid ?? 0])
                 ->hideFromIndex(),
 
             ItemQuality::make('Quality', 'Quality')
                 ->rules('required', 'numeric')
                 ->options(\App\ItemTemplate::$itemQuality),
 
-            Number::make('Max count', 'maxcount')->hideFromIndex(),
-            Number::make('Stacks', 'stackable')->hideFromIndex(),
+            Number::make('Max count', 'maxcount')
+                ->rules('min:0', 'max:2147483648')
+                ->hideFromIndex()
+                ->withMeta(['value' => $this->maxcount ?? 0]),
 
-            Number::make('Buy count', 'BuyCount')->rules('numeric', 'max:127', 'min:0')->hideFromIndex(),
+            Number::make('Stacks', 'stackable')
+                ->rules('min:0', 'max:2147483648')
+                ->hideFromIndex()
+                ->withMeta(['value' => $this->stackable ?? 0]),
 
-            WowCurrency::make('Buying price', 'BuyPrice')->rules('numeric', 'min:0')->hideFromIndex(),
-            WowCurrency::make('Selling price', 'SellPrice')->rules('numeric', 'min:0')->hideFromIndex(),
+            Number::make('Buy count', 'BuyCount')
+                ->rules('numeric', 'max:127', 'min:0')
+                ->withMeta(['value' => $this->BuyCount ?? 0])
+                ->hideFromIndex(),
+
+            WowCurrency::make('Buying price', 'BuyPrice')
+                ->rules('numeric', 'min:0')
+                ->withMeta(['value' => $this->BuyPrice ?? 0])
+                ->hideFromIndex(),
+            WowCurrency::make('Selling price', 'SellPrice')
+                ->rules('numeric', 'min:0')
+                ->hideFromIndex(),
 
             Select::make('Inventory type', 'InventoryType')
                 ->options(\App\ItemTemplate::$inventoryType)
