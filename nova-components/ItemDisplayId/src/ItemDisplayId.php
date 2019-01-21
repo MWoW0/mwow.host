@@ -5,11 +5,9 @@ namespace Sasin91\ItemDisplayId;
 use App\Jobs\FetchIcon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Laravel\Nova\Fields\Field;
-use Laravel\Nova\Fields\File;
-use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Number;
 
-class ItemDisplayId extends File
+class ItemDisplayId extends Number
 {
     /**
      * Indicates if the element should be shown on the index view.
@@ -50,21 +48,33 @@ class ItemDisplayId extends File
      */
     public function __construct($name, $attribute = null, $disk = 'public', $storageCallback = null)
     {
-        parent::__construct($name, $attribute, $disk, $storageCallback);
+        parent::__construct($name, $attribute, $storageCallback);
 
-        $this->thumbnail(function () {
-            if ($icon = $this->resolveIcon()) {
-                return Storage::disk($this->disk)->url("icons/{$icon}.png");
-            }
+        $this->disk = $disk;
+    }
 
-            return null;
-        })->preview(function () {
-            if ($icon = $this->resolveIcon()) {
-                return Storage::disk($this->disk)->url("icons/{$icon}.png");
-            }
+    /**
+     * Get additional meta information to merge with the element payload.
+     *
+     * @return array
+     */
+    public function meta()
+    {
+        $iconUrl = $this->resolveIconUrl();
 
-            return null;
-        });
+        return array_merge([
+            'thumbnailUrl' => $iconUrl,
+            'previewUrl' => $iconUrl,
+        ], $this->meta);
+    }
+
+    protected function resolveIconUrl():?string
+    {
+        if ($icon = $this->resolveIcon()) {
+            return Storage::disk($this->disk)->url("icons/{$icon}.png");
+        }
+
+        return null;
     }
 
     protected function resolveIcon():?string
