@@ -25,7 +25,8 @@
         "shipping-docker/vessel": "^4.0",
         "sasin91/item-display-id": "*",
         "sasin91/item-quality": "*",
-        "sasin91/wow-currency": "*"
+        "sasin91/wow-currency": "*",
+        "sasin91/trinitycore-compiler": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -57,6 +58,10 @@
         {
             "type": "path",
             "url": "./nova-components/WowCurrency"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/TrinitycoreCompiler"
         }
     ],
     "config": {

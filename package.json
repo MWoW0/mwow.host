@@ -17,7 +17,9 @@
         "build-item-quality": "cd nova-components/ItemQuality && npm run dev",
         "build-item-quality-prod": "cd nova-components/ItemQuality && npm run prod",
         "build-wow-currency": "cd nova-components/WowCurrency && npm run dev",
-        "build-wow-currency-prod": "cd nova-components/WowCurrency && npm run prod"
+        "build-wow-currency-prod": "cd nova-components/WowCurrency && npm run prod",
+        "build-trinitycore-compiler": "cd nova-components/TrinitycoreCompiler && npm run dev",
+        "build-trinitycore-compiler-prod": "cd nova-components/TrinitycoreCompiler && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.18",
