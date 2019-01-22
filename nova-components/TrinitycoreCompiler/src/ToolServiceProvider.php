@@ -44,7 +44,7 @@ class ToolServiceProvider extends ServiceProvider
                 ->prefix('nova-vendor/trinitycore-compiler')
                 ->group(__DIR__.'/../routes/api.php');
 
-        Route::get('/deploy', 'Sasin91\TrinitycoreCompiler\Http\Controllers\RunDeployScript');
+        Route::middleware(['nova', Authorize::class])->get('/deploy', 'Sasin91\TrinitycoreCompiler\Http\Controllers\RunDeployScript');
     }
 
     /**
