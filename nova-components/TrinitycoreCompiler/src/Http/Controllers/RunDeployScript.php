@@ -27,9 +27,10 @@ class RunDeployScript extends \Illuminate\Routing\Controller
             $result .= $buffer;
 
             echo $buffer;
-            echo '<br>';
         });
 
-        return $result;
+        if (app()->environment('testing')) {
+            return $result;
+        }
     }
 }

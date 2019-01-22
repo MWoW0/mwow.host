@@ -11,9 +11,7 @@
             </button>
 
             <p class="text-white-50% text-lg">
-                <code class="shadow ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1">
-                    {{ buildLog }}
-                </code>
+                <code class="shadow ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1" v-html="buildLog"></code>
             </p>
         </card>
     </div>

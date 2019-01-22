@@ -954,8 +954,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 
 
@@ -2923,18 +2921,11 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("p", { staticClass: "text-white-50% text-lg" }, [
-            _c(
-              "code",
-              {
-                staticClass:
-                  "shadow ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1"
-              },
-              [
-                _vm._v(
-                  "\n                " + _vm._s(_vm.buildLog) + "\n            "
-                )
-              ]
-            )
+            _c("code", {
+              staticClass:
+                "shadow ml-1 border border-80 text-sm font-mono text-white bg-black rounded px-2 py-1",
+              domProps: { innerHTML: _vm._s(_vm.buildLog) }
+            })
           ])
         ]
       )
