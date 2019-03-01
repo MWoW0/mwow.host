@@ -36,6 +36,7 @@
         "vue": "^2.6.7"
     },
     "dependencies": {
-        "tailwindcss-gradients": "^1.1.0"
+        "tailwindcss-gradients": "^1.1.0",
+        "vue-template-compiler": "^2.6.7"
     }
 }
